@@ -1,42 +1,42 @@
 package com.example.powerplant.api;
 
-import com.example.powerplant.domain.Battery;
-import com.example.powerplant.domain.BatteryNamesDTO;
-import com.example.powerplant.service.BatteryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.powerplant.domain.BatteryDTO;
+import com.example.powerplant.domain.BatteryInfoDTO;
+import com.example.powerplant.service.BatteryServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/powerplant")
+@RequestMapping(value = "/batteries")
+@RequiredArgsConstructor
 public class BatteryController {
   
-  @Autowired
-  public BatteryService batteryService;
+  private final BatteryServiceImpl batteryService;
 
-  @GetMapping(value = "/{id}", produces = "application/json")
-  public Battery getById(@PathVariable("id") Long id) {
+  @GetMapping(value = "/{id}")
+  public BatteryDTO getById(@PathVariable("id") Long id) {
     return batteryService.getById(id);
   }
 
-  @PostMapping(produces = "application/json")
-  public Battery save(@RequestBody Battery battery) {
+  @PostMapping
+  public BatteryDTO save(@RequestBody BatteryDTO battery) {
     return batteryService.save(battery);
   }
 
   @DeleteMapping
-  public void delete(@RequestBody Battery battery) {
-    batteryService.delete(battery);
+  public void delete(@PathVariable Long id) {
+    batteryService.delete(id);
   }
 
-  @GetMapping(value = "/all", produces = "application/json")
-  public List<Battery> findAll() {
+  @GetMapping(value = "/all")
+  public List<BatteryDTO> findAll() {
     return batteryService.findAll();
   }
 
-  @GetMapping(value = "/byPostCodesRange", produces = "application/json")
-  public BatteryNamesDTO findByPostCodesRange(@RequestParam("postCode1") String postCode1, @RequestParam("postCode2") String postCode2) {
-    return batteryService.findAllByPostCodeBetween(postCode1, postCode2);
+  @GetMapping(value = "/byPostCodesRange")
+  public BatteryInfoDTO findByPostCodesRange(@RequestParam("postCodeMin") String postCodeMin, @RequestParam("postCodeMax") String postCodeMax) {
+    return batteryService.findAllByPostCodeBetween(postCodeMin, postCodeMax);
   }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class BatteryNamesDTO {
+public class BatteryInfoDTO {
   private List<String> names;
   private Double totalCapacity;
   private Double averageCapacity;  

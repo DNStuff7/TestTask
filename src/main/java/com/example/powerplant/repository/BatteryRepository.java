@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface BatteryRepository extends JpaRepository<Battery, Long> {
 
-  List<Battery> findAllByPostCodeBetweenOrderByName(String post1, String post2);
+  List<Battery> findAllByPostCodeBetweenOrderByName(String postCodeMin, String postCodeMax);
 }
