@@ -2,7 +2,7 @@ package com.example.powerplant.api;
 
 import com.example.powerplant.domain.BatteryDTO;
 import com.example.powerplant.domain.BatteryInfoDTO;
-import com.example.powerplant.service.BatteryServiceImpl;
+import com.example.powerplant.service.BatteryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BatteryController {
 
-  private final BatteryServiceImpl batteryService;
+  private final BatteryService batteryService;
 
   @GetMapping(value = "/{id}")
   public BatteryDTO getById(@PathVariable("id") Long id) {

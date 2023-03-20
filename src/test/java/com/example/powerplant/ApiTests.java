@@ -2,22 +2,25 @@ package com.example.powerplant;
 
 import com.example.powerplant.repository.BatteryRepository;
 import io.restassured.RestAssured;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static org.hamcrest.CoreMatchers.*;
 
+@DisplayName("Power plant API tests")
 public class ApiTests extends PowerPlantApplicationTestsBase {
-  
-  @SpyBean
+
+  @MockBean
   public BatteryRepository batteryRepository;
 
   @LocalServerPort
   private int port;
 
   @Test
+  @DisplayName("Finding by post code in range API")
   void findAllByPostCodeBetweenTest() {
     Mockito.when(batteryRepository.findAllByPostCodeBetweenOrderByName(Mockito.anyString(), Mockito.anyString()))
         .thenReturn(generateMockListOfBatteries());
