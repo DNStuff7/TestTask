@@ -9,6 +9,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface BatteryMapper {
+
   @Mapping(target = "id", ignore = true)
   Battery toBattery(BatteryDTO source);
   BatteryDTO toBatteryDto(Battery target);

@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping(value = "/batteries")
 @RequiredArgsConstructor
 public class BatteryController {
-  
+
   private final BatteryServiceImpl batteryService;
 
   @GetMapping(value = "/{id}")

@@ -6,6 +6,7 @@ import com.example.powerplant.domain.BatteryInfoDTO;
 import java.util.List;
 
 public interface BatteryService {
+
   BatteryDTO getById(Long id);
   BatteryDTO save(BatteryDTO battery);
   void delete(Long id);
